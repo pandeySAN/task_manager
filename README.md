@@ -100,3 +100,40 @@ This project is open-source and free to use.
 ---
 
 Let me know if you'd like to include your GitHub profile, a screenshot section, or deployment instructions for Render/Vercel.
+
+
+## Section B: Explain Your Thinking (~15 minutes)
+
+1. Why did you choose this project structure?
+=> To ensure a clear division of responsibilities, I organized the project using distinct frontend/ and backend/ folders. This enables the frontend and backend to be developed, tested, and deployed independently, simulating the deployment and maintenance of real-world full-stack apps. Every component has a unique package.dependencies and json, which prevents conflicts and maintains modularity.
+
+2. How did you separate frontend and backend concerns?
+=> Rendering the user interface, using React hooks to manage state, and using fetch to make API calls to the backend are all handled by the frontend. It has no idea how the data is handled or stored in the background.
+Express.js is used by the backend to expose a REST API. It manages business logic, routing, and all database interactions. In addition to serving other clients, such as mobile apps or other services, this guarantees that the backend is completely separated from the user interface.
+
+3. How would you handle errors and edge cases?
+=> On the backend: Put try...catch blocks around all of the database queries.
+Send error messages that are always the same and make sense (for example, 400 for bad requests and 500 for server errors).
+Use libraries like Joi or express-validator to check inputs and make sure that bad data doesn't get into the database.
+
+On the front end: When something goes wrong, show the user-friendly error message "Failed to add task."
+Take care of empty states (like when there are no tasks).
+To stop duplicates, turn off the submit button while the task is being added.
+
+4. What security features would you add in production?
+=> If deploying to production, I’d include:
+Input validation and sanitization to prevent SQL injection and XSS.
+Rate limiting to avoid abuse of public APIs.
+CORS restrictions to only allow known origins.
+Authentication and authorization, possibly using JWT or sessions, especially if user-specific task lists are added.
+Environment variables for secrets and credentials (already avoided .env in version control via .gitignore).
+
+5. What would you improve if you had 1 full day?
+=> In one full day, I would: Add the ability to edit tasks.
+Add filters to show task status (e.g., pending or completed).
+Make it possible to sort by dragging and dropping.
+Use Jest for the front end and supertest for the back end to add unit tests.
+Set up Docker so that you can develop on your own computer in a consistent way.
+Use Render for the backend and Vercel for the frontend. Then, use a .env file to connect the two for production URLs.
+Use Tailwind to add animations and transitions to improve the UI/UX.
+
